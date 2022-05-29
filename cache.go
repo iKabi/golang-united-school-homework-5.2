@@ -44,12 +44,9 @@ func (c *Cache) Put(key, value string) {
 }
 
 func (c *Cache) Keys() (ks []string) {
-	now := time.Now()
 	ks = make([]string, 0, len(c.m))
-	for k, v := range c.m {
-		if now.Before(v.deadline) {
+	for k  := range c.m {
 			ks = append(ks, k)
-		}
 	}
 	return
 }
